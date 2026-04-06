@@ -266,13 +266,6 @@ export default function TruckConfigurator() {
                     {fmt(displayTotal)}
                   </div>
                 </div>
-
-                <button className="w-full bg-[#F97316] text-white py-5 font-headline uppercase tracking-widest text-sm hover:brightness-110 transition-all flex items-center justify-center gap-3">
-                  Få en exakt offert
-                  <span className="material-symbols-outlined text-sm">
-                    arrow_forward
-                  </span>
-                </button>
               </div>
 
               <p className="mt-5 text-center text-[0.6rem] uppercase tracking-widest text-black/30 font-body">
