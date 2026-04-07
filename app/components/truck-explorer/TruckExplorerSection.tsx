@@ -16,85 +16,72 @@ interface Comp {
   dot: { x: number; y: number }
 }
 
-const COMPS: Comp[] = [
-  {
-    id: 'ventilation',
-    name: 'Ventilation',
-    desc: 'Kraftfull frånluft för en behaglig arbetsmiljö i vagnen',
-    start: 0.15,
-    end: 0.25,
-    box: { x: 35, y: 20, w: 30, h: 16 },
-    dot: { x: 50, y: 16 },
-  },
-  {
-    id: 'displaykyl',
-    name: 'Displaykyl',
-    desc: 'Visa upp dina ingredienser och produkter på ett professionellt sätt',
-    start: 0.25,
-    end: 0.35,
-    box: { x: 23, y: 22, w: 14, h: 44 },
-    dot: { x: 28, y: 44 },
-  },
-  {
-    id: 'stekhall',
-    name: 'Stekhäll',
-    desc: 'Jämn och kraftfull värme för perfekt tillagning varje gång',
-    start: 0.35,
-    end: 0.45,
-    box: { x: 35, y: 42, w: 21, h: 18 },
-    dot: { x: 43, y: 61 },
-  },
-  {
-    id: 'fritos',
-    name: 'Fritös',
-    desc: 'Krispigt och jämnt resultat med exakt temperaturkontroll',
-    start: 0.45,
-    end: 0.55,
-    box: { x: 51, y: 40, w: 16, h: 16 },
-    dot: { x: 54, y: 59 },
-  },
-  {
-    id: 'diskho',
-    name: 'Diskho',
-    desc: 'Godkänd för professionell livsmedelshantering',
-    start: 0.55,
-    end: 0.65,
-    box: { x: 72, y: 34, w: 14, h: 20 },
-    dot: { x: 75, y: 54 },
-  },
-  {
-    id: 'gaslada',
-    name: 'Gaslåda',
-    desc: 'Säker och tillgänglig gasförvaring enligt gällande standard',
-    start: 0.65,
-    end: 0.75,
-    box: { x: 34, y: 58, w: 16, h: 15 },
-    dot: { x: 25, y: 76 },
-  },
-  {
-    id: 'forvaringsskap',
-    name: 'Förvaringsskåp',
-    desc: 'Organiserad förvaring för all utrustning och råvaror',
-    start: 0.75,
-    end: 0.85,
-    box: { x: 48, y: 56, w: 16, h: 15 },
-    dot: { x: 47, y: 73 },
-  },
-  {
-    id: 'ventilationskapa',
-    name: 'Ventilationskåpa',
-    desc: 'Effektiv uppsamling av ånga och matos',
-    start: 0.85,
-    end: 0.95,
-    box: { x: 34, y: 18, w: 34, h: 20 },
-    dot: { x: 49, y: 31 },
-  },
+type CompBase = Omit<Comp, 'name' | 'desc'>
+
+const COMP_BASES: CompBase[] = [
+  { id: 'ventilation',      start: 0.15, end: 0.25, box: { x: 35, y: 20, w: 30, h: 16 }, dot: { x: 50, y: 16 } },
+  { id: 'displaykyl',       start: 0.25, end: 0.35, box: { x: 23, y: 22, w: 14, h: 44 }, dot: { x: 28, y: 44 } },
+  { id: 'stekhall',         start: 0.35, end: 0.45, box: { x: 35, y: 42, w: 21, h: 18 }, dot: { x: 43, y: 61 } },
+  { id: 'fritos',           start: 0.45, end: 0.55, box: { x: 51, y: 40, w: 16, h: 16 }, dot: { x: 54, y: 59 } },
+  { id: 'diskho',           start: 0.55, end: 0.65, box: { x: 72, y: 34, w: 14, h: 20 }, dot: { x: 75, y: 54 } },
+  { id: 'gaslada',          start: 0.65, end: 0.75, box: { x: 34, y: 58, w: 16, h: 15 }, dot: { x: 25, y: 76 } },
+  { id: 'forvaringsskap',   start: 0.75, end: 0.85, box: { x: 48, y: 56, w: 16, h: 15 }, dot: { x: 47, y: 73 } },
+  { id: 'ventilationskapa', start: 0.85, end: 0.95, box: { x: 34, y: 18, w: 34, h: 20 }, dot: { x: 49, y: 31 } },
 ]
+
+const LABELS = {
+  sv: [
+    { name: 'Ventilation',      desc: 'Kraftfull frånluft för en behaglig arbetsmiljö i vagnen' },
+    { name: 'Displaykyl',       desc: 'Visa upp dina ingredienser och produkter på ett professionellt sätt' },
+    { name: 'Stekhäll',         desc: 'Jämn och kraftfull värme för perfekt tillagning varje gång' },
+    { name: 'Fritös',           desc: 'Krispigt och jämnt resultat med exakt temperaturkontroll' },
+    { name: 'Diskho',           desc: 'Godkänd för professionell livsmedelshantering' },
+    { name: 'Gaslåda',          desc: 'Säker och tillgänglig gasförvaring enligt gällande standard' },
+    { name: 'Förvaringsskåp',   desc: 'Organiserad förvaring för all utrustning och råvaror' },
+    { name: 'Ventilationskåpa', desc: 'Effektiv uppsamling av ånga och matos' },
+  ],
+  en: [
+    { name: 'Ventilation',       desc: 'Powerful extraction fan for a comfortable working environment' },
+    { name: 'Display fridge',    desc: 'Showcase your ingredients and products professionally' },
+    { name: 'Griddle',           desc: 'Even, powerful heat for perfect cooking every time' },
+    { name: 'Fryer',             desc: 'Crispy, consistent results with precise temperature control' },
+    { name: 'Sink',              desc: 'Approved for professional food handling' },
+    { name: 'Gas storage',       desc: 'Safe and accessible gas storage to current safety standards' },
+    { name: 'Storage cabinet',   desc: 'Organised storage for all equipment and ingredients' },
+    { name: 'Extractor hood',    desc: 'Efficient capture of steam and cooking odours' },
+  ],
+} as const
+
+const UI = {
+  sv: {
+    eyebrow:  'UTFORSKA VAGNEN',
+    heading:  'Allt du behöver.',
+    heading2: 'Ingenting du inte behöver.',
+    sub:      'Scrolla för att utforska varje del av din framtida matvagn.',
+    altMain:  'Matvagn — samlad vy',
+    altCut:   'Matvagn — genomskärning',
+  },
+  en: {
+    eyebrow:  'EXPLORE THE TRUCK',
+    heading:  'Everything you need.',
+    heading2: 'Nothing you don\'t.',
+    sub:      'Scroll to explore every part of your future food truck.',
+    altMain:  'Food truck — assembled view',
+    altCut:   'Food truck — cutaway view',
+  },
+} as const
+
+function buildComps(lang: 'sv' | 'en'): Comp[] {
+  return COMP_BASES.map((base, i) => ({ ...base, ...LABELS[lang][i] }))
+}
 
 const FI = 3
 const FO = 2
 
-export default function TruckExplorerSection() {
+export default function TruckExplorerSection({ lang = 'sv' }: { lang?: 'sv' | 'en' }) {
+  const COMPS = buildComps(lang)
+  const ui    = UI[lang]
+
   const sectionRef   = useRef<HTMLElement>(null)
   const assembledRef = useRef<HTMLImageElement>(null)
   const cutawayRef   = useRef<HTMLImageElement>(null)
@@ -212,15 +199,15 @@ export default function TruckExplorerSection() {
           className="font-body uppercase text-[11px] md:text-[12px] text-[#F97316] mb-[8px] md:mb-[13px]"
           style={{ letterSpacing: '3px' }}
         >
-          UTFORSKA VAGNEN
+          {ui.eyebrow}
         </p>
         <h2 className="font-headline font-bold text-[28px] md:text-[48px] text-[#1A1A1A] leading-tight mb-[8px] md:mb-[13px]">
-          Allt du behöver.{' '}
+          {ui.heading}{' '}
           <br className="hidden md:inline" />
-          Ingenting du inte behöver.
+          {ui.heading2}
         </h2>
         <p className="font-body text-[15px] md:text-[18px] text-[#6B7280] max-w-[600px] mx-auto">
-          Scrolla för att utforska varje del av din framtida matvagn.
+          {ui.sub}
         </p>
       </div>
 
@@ -230,7 +217,7 @@ export default function TruckExplorerSection() {
           <img
             ref={assembledRef}
             src="/images/truck-assembled.png"
-            alt="Matvagn — samlad vy"
+            alt={ui.altMain}
             className="block w-full h-auto"
             style={{ willChange: 'opacity' }}
             draggable={false}
@@ -240,7 +227,7 @@ export default function TruckExplorerSection() {
           <img
             ref={cutawayRef}
             src="/images/truck-cutaway.png"
-            alt="Matvagn — genomskärning"
+            alt={ui.altCut}
             className="absolute top-0 left-0 block w-full h-auto"
             style={{ willChange: 'opacity', opacity: 0 }}
             draggable={false}

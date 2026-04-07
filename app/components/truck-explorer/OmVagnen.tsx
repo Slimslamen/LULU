@@ -46,7 +46,7 @@ export default function OmVagnen() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-[#fcf9f4] py-36 px-8 md:px-[89px]">
+    <section id="omvagnen" ref={sectionRef} className="bg-[#fcf9f4] py-36 px-8 md:px-[89px]">
       <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-[89px] items-center">
 
         {/* Text — second on mobile, first on desktop */}

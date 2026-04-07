@@ -47,7 +47,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center px-5 max-w-[890px]">
+      <section id="hem" className="relative z-10 text-center px-5 max-w-[890px]">
         <h1
           ref={headingRef}
           className="font-headline text-5xl md:text-7xl text-white mb-8 leading-tight"
@@ -68,7 +68,7 @@ export default function Hero() {
         >
           Starta Utforskaren
         </button>
-      </div>
+      </section>
 
       {/* Scroll indicator */}
       <div
